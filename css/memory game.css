@@ -1,0 +1,338 @@
+html {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-image: url('../img/udacity.png');
+    font-family: 'Coda', cursive;
+    background-repeat: no-repeat;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+h1 {
+    padding-top: 100px;
+    font-family: 'Open Sans', sans-serif;
+    font-style:italic;
+    font-weight: bold;
+    color: #990000;
+}
+
+                /*-------------------------------------------------- Styles for the deck cards --------------------------------------------*/
+
+.deck {
+    background: #606060;
+    width: 660px;
+    min-height: 680px;
+    padding: 32px;
+    border-radius: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+}
+.deck.disabled {
+    pointer-events: none;
+}
+
+.deck .card {
+    height: 125px;
+    width: 125px;
+    background-image: url(../img/bg.png);
+    font-size: 0;
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.deck .card.open {
+    transform: rotateY(0);
+    background: #66FF66;
+    cursor: default;
+    pointer-events: none;
+}
+
+.deck .card.show {
+    font-size: 33px;
+}
+
+.deck .card.match {
+    cursor: default;
+    background: #8DAAEF;
+    font-size: 33px;
+    pointer-events: none;
+}
+
+.deck .card.wrong {
+    background: #F25E85;
+}
+
+                /*------------------------------------------- Score Panel styles ---------------------------------------*/
+
+.score-panel {
+    padding-top: 50px;
+    text-align: left;
+    width: 345px;
+    margin-bottom: 10px;
+}
+
+.score-panel .stars {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+.score-panel .stars li {
+    display: inline-block;
+}
+
+.score-panel .restart {
+    float: right;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.score-panel .timer {
+    color:  #990000;
+    float: right;
+    margin-right: 12px;
+}
+
+                    /*------------------------- Modal ----------------------------------*/
+
+.modal {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.modal h2 {
+    color: #455a64;
+    font-weight: normal;
+    font-size: 50px;
+    margin: 0;
+}
+
+.modal p {
+    font-weight: bold;
+    font-size: 15px;
+    margin: 0;
+    margin-bottom: 8px !important;
+    color: #757575;
+}
+
+.modal button {
+    width: 120px;
+    padding: 5px;
+    height: 35px;
+    color: #fff;
+    background-color:#7244F0;
+    font-size: 15px;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+                            /*--------------------- Hidden content ---------------------------------------------*/
+.hidden {
+    display: none;
+}
+
+
+                            /*-----------------------to be Responsive --------------------------------------------*/
+
+@media screen and (min-width: 451px) and (max-width: 670px) {
+	.container {
+		width: auto;
+		padding: 0;
+		margin: 0;
+	}
+
+	.deck {
+		min-width: 0;
+		width: 90%;
+		min-height: 0;
+		height: auto;
+		margin: 0;
+		padding: 1em;
+	}
+
+	.deck .card {
+		height: 105px;
+		width: 24%;
+		margin: 0 0 5px;
+		padding: 0;
+	}
+
+	.score-panel {
+		width: 80%;
+	}
+}
+
+@media screen and (max-width: 450px) {
+	.container {
+		width: auto;
+		padding: 0;
+		margin: 0;
+	}
+
+	.deck {
+		min-width: 0;
+		width: 90%;
+		min-height: 0;
+		height: auto;
+		margin: 0;
+		padding: 1em;
+	}
+
+	.deck .card {
+        background-image: url(../img/bg%20responsive.png)
+		height: 95px;
+		width: 24%;
+		margin: 0 0 5px;
+		padding: 0;
+	}
+
+	.score-panel {
+		width: 80%;
+	}
+}
+
+
+                /*------------------------------------------------ animation ---------------------------------------------*/
+
+@keyframes rubberBand {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+    30% {
+        transform: scale3d(1.25, 0.75, 1);
+    }
+    40% {
+        transform: scale3d(0.75, 1.25, 1);
+    }
+    50% {
+        transform: scale3d(1.15, 0.85, 1);
+    }
+    65% {
+        transform: scale3d(0.95, 1.05, 1);
+    }
+    75% {
+        transform: scale3d(1.05, 0.95, 1);
+    }
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+.rubberBand {
+    animation-duration: 0.75s;
+    animation-name: rubberBand;
+}
+
+@keyframes shake {
+    from, to {
+        transform: translate3d(0, 0, 0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+        transform: translate3d(-10px, 0, 0);
+    }
+    20%, 40%, 60%, 80% {
+        transform: translate3d(10px, 0, 0);
+    }
+}
+
+.shake {
+    animation-duration: 0.75s;
+    animation-name: shake;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+    50% {
+        transform: scale3d(1.05, 1.05, 1.05);
+    }
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+.pulse {
+    animation-duration: 0.5s;
+    animation-name: pulse;
+}
+
+@keyframes tada {
+    from {
+        transform: scale3d(1, 1, 1);
+    }
+    10%, 20% {
+        transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+    }
+    30%, 50%, 70%, 90% {
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, 3deg);
+    }
+    40%, 60%, 80% {
+        transform: scale3d(1.1, 1.1, 1.1) rotate3d(0, 0, 1, -3deg);
+    }
+    to {
+        transform: scale3d(1, 1, 1);
+    }
+}
+
+.tada {
+	animation-duration: 0.5s;
+    animation-name: tada;
+}
+
+
+@keyframes bounce {
+    from, 20%, 53%, 80%, to {
+        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+        transform: translate3d(0, 0, 0);
+    }
+    40%, 43% {
+        animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+        transform: translate3d(0, -30px, 0);
+    }
+    70% {
+        animation-timing-function: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+        transform: translate3d(0, -15px, 0);
+    }
+    90% {
+        transform: translate3d(0, -4px, 0);
+    }
+}
+
+.bounce {
+	animation-duration: 0.5s;
+    animation-name: bounce;
+    transform-origin: center bottom;
+}
