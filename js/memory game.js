@@ -44,6 +44,9 @@ function resetGame() {
 	stars[1].classList.remove("fa-star-o");
 	stars[2].classList.add("fa-star");
 	stars[2].classList.remove("fa-star-o");
+    stars[0].classList.add("fa-star"); 
+	stars[0].classList.remove("fa-star-o");
+
 
 	cardList = null;                               // Temporal card set to null to be able to compare again
 	matchesCounter = 0;                            // Reset matches counter
@@ -130,6 +133,8 @@ function displayCard (evt) {
 function increaseMoveCounter(){
     const currentMoves = +moves.textContent;
     moves.textContent = currentMoves + 1;
+    toggleStars(currentMoves);
+
 }
                 /*------------------------------ lock card function in case of cards was match ------------------------------ */
 
@@ -141,7 +146,6 @@ function lockMatch(card){
     deck.classList.remove("disabled");
     cardList = null;
     matchesCounter += 1;
-    toggleStars();
     if (matchesCounter === 8) {
         showResult();
     }
@@ -157,16 +161,21 @@ function noMatch(card) {
 }
                 /*------------------------------- toggle star function ----------------------------------------------------- */ 
 
-function toggleStars() {
-	if (matchesCounter === 3) {
+function toggleStars(x) {
+	if (x === 12) {
 		stars[2].classList.remove("fa-star");
 		stars[2].classList.add("fa-star-o");
 		finalStars = 2;
-	} else if (matchesCounter === 6) {
+	} else if (x === 16) {
 		stars[1].classList.remove("fa-star");
 		stars[1].classList.add("fa-star-o");
 		finalStars = 1;
-	}
+	} else if (x ===20 ){
+        stars[0].classList.remove("fa-star");
+        stars[0].classList.add("fa-star-o");
+        finalStars = 0;
+
+    }
 }
                 /*-------------------------------------  in case of Won  ----------------------------------------------*/
 
